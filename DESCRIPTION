@@ -1,0 +1,23 @@
+Package: h3inr
+Title: Hexagon-based Geographic Grid System
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "John",
+           family = "Coene",
+           role = c("aut", "cre"),
+           email = "jcoenep@gmail.com",
+           comment = c(ORCID = "0000-0002-6637-4107"))
+Description: Hexagon-based Geographic Grid System.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports:
+    V8,
+    cli,
+    dplyr,
+    purrr,
+    crayon,
+    tibble,
+    magrittr,
+    assertthat
+RoxygenNote: 6.1.1
