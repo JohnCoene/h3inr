@@ -76,7 +76,7 @@ h3_to_geo <- function(data, hex) {
 #' geo_to_h3(quakes, lat, long) %>% 
 #'   h3_to_geo_boundary(hex)
 #' 
-#' @return A named list of hexagon boundaries.
+#' @return A named list of hexagon boundaries where the names are the hex index.
 #' 
 #' @export
 h3_to_geo_boundary <- function(data, hex) {
