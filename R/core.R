@@ -19,18 +19,18 @@ geo_to_h3 <- function(data, lat, lon, resolution = 4L) {
   assert_that(has_it(lon))
   assert_that(is_resolution_valid(resolution))
 
-  lat <- dplyr::enquo(lat)
-  lon <- dplyr::enquo(lon)
+  lat <- enquo(lat)
+  lon <- enquo(lon)
   
-  indices <- dplyr::select(data, lat = !!lat, lon = !!lon) %>% 
-    purrr::pmap(function(lat, lon){
+  indices <- select(data, lat = !!lat, lon = !!lon) %>% 
+    pmap(function(lat, lon){
       h3$call("h3.geoToH3", lat, lon)
     }) %>% 
-    purrr::map_dfr(function(x){
+    map_dfr(function(x){
       tibble::tibble(hex = x)
     })
 
-  dplyr::bind_cols(data, indices)
+  bind_cols(data, indices)
 }
 
 #' Get Hexagon Center Coordinates
@@ -51,20 +51,20 @@ h3_to_geo <- function(data, hex) {
   assert_that(has_it(data))
   assert_that(has_it(hex))
 
-  hex <- dplyr::enquo(hex)
+  hex <- enquo(hex)
 
-  centers <- dplyr::select(data, hex = !!hex) %>% 
-    purrr::pmap(function(hex){
+  centers <- select(data, hex = !!hex) %>% 
+    pmap(function(hex){
       h3$call("h3.h3ToGeo", hex)
     }) %>% 
-    purrr::map_dfr(function(x){
+    map_dfr(function(x){
       tibble::tibble(
         hex_center_lat = x[[1]],
         hex_center_lon = x[[2]]
       )
     })
 
-  dplyr::bind_cols(data, centers)
+  bind_cols(data, centers)
 }
 
 #' Get Hexagon Boundaries
@@ -84,13 +84,13 @@ h3_to_geo_boundary <- function(data, hex) {
   assert_that(has_it(data))
   assert_that(has_it(hex))
 
-  hex <- dplyr::enquo(hex)
+  hex <- enquo(hex)
 
-  boundaries <- dplyr::select(data, hex = !!hex) %>% 
-    purrr::pmap(function(hex){
+  boundaries <- select(data, hex = !!hex) %>% 
+    pmap(function(hex){
       h3$call("h3.h3ToGeoBoundary", hex)
     }) 
 
-  names(boundaries) <- dplyr::pull(data, hex = !!hex)
+  names(boundaries) <- pull(data, !!hex)
   return(boundaries)
 }

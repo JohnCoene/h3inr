@@ -1,4 +1,6 @@
 #' @import assertthat
+#' @import purrr
+#' @import dplyr
 #' @keywords internal
 "_PACKAGE"
 

@@ -11,6 +11,9 @@ h3_to_geo_boundary(data, hex)
 
 \item{hex}{Column containing hexagon indices.}
 }
+\value{
+A named list of hexagon boundaries where the names are the hex index.
+}
 \description{
 Get Hexagon Boundaries
 }
