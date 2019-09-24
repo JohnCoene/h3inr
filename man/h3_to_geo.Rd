@@ -4,22 +4,26 @@
 \alias{h3_to_geo}
 \title{Get Hexagon Center Coordinates}
 \usage{
-h3_to_geo(data, hex)
+h3_to_geo(data, ...)
 }
 \arguments{
-\item{data}{A data.frame or tibble containing \code{lat} and \code{lon}.}
+\item{data}{A data.frame or character vector,
+if the former is specified then the \code{hex}
+argument \emph{must} be passed, specifying the
+bare column name containing hexagon indices.}
 
-\item{hex}{Column containing hexagon indices.}
+\item{...}{Other arguments passed to methods.}
 }
 \value{
 The \code{data} as \link[tibble]{tibble} with their corresponding
-hexagon centers as \code{hex_center_lat} and \code{hex_center_lon} columns.
+hexagon centers as \code{hex_center_lat} and \code{hex_center_lon} columns,
+\code{data} is a data.frame then data is bound to the latter.
 }
 \description{
 Get Hexagon Center Coordinates
 }
 \examples{
 geo_to_h3(quakes, lat, long) \%>\% 
-  h3_to_geo(hex)
+  h3_to_geo(hex = hex)
 
 }

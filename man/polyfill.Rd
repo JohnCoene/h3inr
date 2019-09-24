@@ -16,6 +16,7 @@ polyfill(polygon, resolution = 4L)
 Get the set of hexagons within a polygon.
 }
 \examples{
+\dontrun{
 # define a polygon
 polygon <- list(
  list(37.813318999983238, -122.4089866999972145),
@@ -24,5 +25,6 @@ polygon <- list(
 )
 
 polyfill(polygon, 7L)
+}
 
 }

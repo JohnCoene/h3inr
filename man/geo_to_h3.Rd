@@ -4,10 +4,11 @@
 \alias{geo_to_h3}
 \title{Coords to H3}
 \usage{
-geo_to_h3(data, lat, lon, resolution = 4L)
+geo_to_h3(data, lat, lon, resolution = 7L)
 }
 \arguments{
-\item{data}{A data.frame or tibble containing \code{lat} and \code{lon}.}
+\item{data}{A data.frame, \link[tibble]{tibble} containing
+\code{lat} and \code{lon}.}
 
 \item{lat, lon}{Coordinates to bin.}
 
@@ -19,7 +20,7 @@ The \code{data} as \link[tibble]{tibble} with their corresponding
 hexagon index as \code{hex} column.
 }
 \description{
-Coords to H3
+Turn coordinates into hexagon indices.
 }
 \examples{
 geo_to_h3(quakes, lat, long)

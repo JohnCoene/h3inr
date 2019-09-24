@@ -4,14 +4,17 @@
 \alias{k_ring}
 \title{Get neighbours}
 \usage{
-k_ring(data, hex, size = 1L)
+k_ring(data, size = 1L, ...)
 }
 \arguments{
-\item{data}{A data.frame or tibble containing \code{lat} and \code{lon}.}
-
-\item{hex}{Column containing hexagon indices.}
+\item{data}{A data.frame or character vector,
+if the former is specified then the \code{hex}
+argument \emph{must} be passed, specifying the
+bare column name containing hexagon indices.}
 
 \item{size}{Radius of the ring ($k$).}
+
+\item{...}{Other arguments passed to methods.}
 }
 \value{
 A named list of neighbours where the names are the hex index
@@ -19,9 +22,4 @@ of the which the neighbours have been computed.
 }
 \description{
 Get neighbouring hexagons.
-}
-\examples{
-hexagons <- geo_to_h3(quakes, lat, long)
-k_ring(hexagons, hex)
-
 }
