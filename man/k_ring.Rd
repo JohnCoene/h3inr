@@ -23,3 +23,10 @@ of the which the neighbours have been computed.
 \description{
 Get neighbouring hexagons.
 }
+\examples{
+\dontrun{
+hexagons <- geo_to_h3(quakes, lat, long) \%>\% 
+  k_ring(hex = hex)
+}
+
+}

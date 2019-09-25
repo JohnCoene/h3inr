@@ -12,7 +12,7 @@
 #' \dontrun{
 #' hexagons <- geo_to_h3(quakes, lat, long) %>% 
 #'   k_ring(hex = hex)
-#' 
+#' }
 #' 
 #' @export
 k_ring <- function(data, size = 1L, ...) UseMethod("k_ring")
