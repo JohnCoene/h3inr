@@ -36,7 +36,6 @@ k_ring.default <- function(data, size = 1L, ...) {
 k_ring.data.frame <- function(data, size = 1L, ..., hex) {
   # check inputs
   assert_that(size > 0)
-  assert_that(has_it(data))
   assert_that(has_it(hex))
 
   hex_enquo <- enquo(hex)
@@ -67,4 +66,50 @@ k_ring.data.frame <- function(data, size = 1L, ..., hex) {
 #' @export
 polyfill <- function(polygon, resolution = 4L) {
   h3$call("h3.polyfill", polygon, resolution)
+}
+
+#' Get neighbours
+#' 
+#' Get neighbouring hexagons.
+#' 
+#' @inheritParams h3_to_geo
+#' @param size Radius of the ring ($k$).
+#' 
+#' @return A named list of neighbours where the names are the hex index
+#' of the which the neighbours have been computed.
+#' 
+#' @examples
+#' \dontrun{
+#' hexagons <- geo_to_h3(quakes, lat, long) %>% 
+#'   k_ring_dist(hex = hex)
+#' }
+#' 
+#' @export
+k_ring_dist <- function(data, size = 1L, ...) UseMethod("k_ring_dist")
+
+#' @export
+k_ring_dist.default <- function(data, size = 1L, ...) {
+  # check inputs
+  assert_that(size > 0)
+  assert_that(has_it(data))
+  
+  neighbours <- map(data, function(x, s){
+    h3$call("h3.kRing", x, s)
+  }, s = 1L)
+
+  names(neighbours) <- data
+  return(neighbours)
+}
+
+#' @export
+#' @method k_ring_dist data.frame
+k_ring_dist.data.frame <- function(data, size = 1L, ..., hex) {
+  # check inputs
+  assert_that(size > 0)
+  assert_that(has_it(hex))
+
+  hex_enquo <- enquo(hex)
+  
+  pull(data, !!hex_enquo) %>% 
+    k_ring_dist()
 }
