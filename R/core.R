@@ -22,13 +22,13 @@ geo_to_h3 <- function(data, lat, lon, resolution = 7L) {
   assert_that(has_it(lon))
   assert_that(is_resolution_valid(resolution))
 
-  lat <- enquo(lat)
-  lon <- enquo(lon)
+  lat_enquo <- enquo(lat)
+  lon_enquo <- enquo(lon)
   
-  indices <- select(data, lat = !!lat, lon = !!lon) %>% 
-    pmap(function(lat, lon){
-      h3$call("h3.geoToH3", lat, lon)
-    }) %>% 
+  indices <- select(data, lat = !!lat_enquo, lon = !!lon_enquo) %>% 
+    pmap(function(lat, lon, res){
+      h3$call("h3.geoToH3", lat, lon, res)
+    }, res = resolution) %>% 
     map_dfr(function(x){
       tibble::tibble(hex = x)
     })
@@ -57,9 +57,11 @@ h3_to_geo <- function(data, ...) UseMethod("h3_to_geo")
 
 #' @export
 h3_to_geo.default <- function(data, ...) {
-  data %>% 
-    map(function(hex){
-      h3$call("h3.h3ToGeo", hex)
+  map(data, function(x){
+      tryCatch(
+        h3$call("h3.h3ToGeo", x),
+        error = function(e) list(NA, NA)
+      )
     }) %>% 
     map_dfr(function(x){
       tibble::tibble(
@@ -68,7 +70,6 @@ h3_to_geo.default <- function(data, ...) {
       )
     })
 }
-
 
 #' @export
 #' @method h3_to_geo data.frame
