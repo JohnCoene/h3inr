@@ -11,7 +11,8 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 
 # h3inr
 
-Brings [Uber h3](https://github.com/uber/h3-js) to R.
+Brings [Uber h3](https://github.com/uber/h3-js) to R via
+[V8](https://github.com/jeroen/V8).
 
 ## Installation
 

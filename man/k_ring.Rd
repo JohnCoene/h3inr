@@ -2,7 +2,7 @@
 % Please edit documentation in R/algorithms.R
 \name{k_ring}
 \alias{k_ring}
-\title{Get neighbours}
+\title{Get Neighbouring Hexagons}
 \usage{
 k_ring(data, size = 1L, ...)
 }
@@ -21,7 +21,8 @@ A named list of neighbours where the names are the hex index
 of the which the neighbours have been computed.
 }
 \description{
-Get neighbouring hexagons.
+Get all hexagons in a k-ring around a given center. 
+The order of the hexagons is undefined.
 }
 \examples{
 \dontrun{

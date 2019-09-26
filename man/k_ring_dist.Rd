@@ -2,7 +2,7 @@
 % Please edit documentation in R/algorithms.R
 \name{k_ring_dist}
 \alias{k_ring_dist}
-\title{Get neighbours}
+\title{Get Neighbouring Hexagons Ordered by Distance}
 \usage{
 k_ring_dist(data, size = 1L, ...)
 }
@@ -21,7 +21,9 @@ A named list of neighbours where the names are the hex index
 of the which the neighbours have been computed.
 }
 \description{
-Get neighbouring hexagons.
+Get all hexagons in a k-ring around a given center, 
+in an array of arrays ordered by distance from the origin. 
+The order of the hexagons within each ring is undefined.
 }
 \examples{
 \dontrun{
