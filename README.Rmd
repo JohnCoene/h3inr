@@ -1,0 +1,48 @@
+---
+output: 
+  github_document:
+    html_preview: false
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+<!-- badges: start -->
+[![Travis build status](https://travis-ci.org/JohnCoene/h3inr.svg?branch=master)](https://travis-ci.org/JohnCoene/h3inr)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+<!-- badges: end -->
+
+# h3inr
+
+Brings [Uber h3](https://github.com/uber/h3-js) to R.
+
+## Installation
+
+You can install the package from Github:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("JohnCoene/h3inr")
+```
+
+## Example
+
+```{r example}
+library(h3inr)
+
+hexagons <- quakes %>% 
+  geo_to_h3(lat, long, resolution = 4L) %>% # get hex id
+  h3_to_geo(hex = hex) # get hex center coordinates
+
+hexagons %>% 
+  head() %>% 
+  knitr::kable()
+```
