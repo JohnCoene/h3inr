@@ -45,3 +45,6 @@ hexagons %>%
 | \-17.97 | 181.66 |   626 | 4.1 |       19 | 849b557ffffffff |       \-17.88495 |       \-178.1865 |
 | \-20.42 | 181.96 |   649 | 4.0 |       11 | 849b705ffffffff |       \-20.34078 |       \-177.9118 |
 | \-19.68 | 184.31 |   195 | 4.0 |       12 | 849b08bffffffff |       \-19.82371 |       \-175.8216 |
+
+See [globe4r](https://globe4r.john-coene.com/articles/hexagons.html) for
+an example of what h3inr enables.

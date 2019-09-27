@@ -46,3 +46,5 @@ hexagons %>%
   head() %>% 
   knitr::kable()
 ```
+
+See [globe4r](https://globe4r.john-coene.com/articles/hexagons.html) for an example of what h3inr enables.
